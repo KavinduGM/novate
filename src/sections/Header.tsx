@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { Logo } from '@/components/Logo';
 import { LinkButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
@@ -35,7 +35,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {site.nav.map((item) => (
+          {(site.nav ?? []).map((item) => (
             <NavLink
               key={item.href}
               to={item.href}
@@ -61,13 +61,15 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
-            className="hidden items-center gap-2 text-sm font-semibold text-ink/70 hover:text-primary xl:inline-flex"
-          >
-            <Icon name="phone" width="16" height="16" />
-            {site.contact.phone}
-          </a>
+          {site.contact.phone && (
+            <a
+              href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+              className="hidden items-center gap-2 text-sm font-semibold text-ink/70 hover:text-primary xl:inline-flex"
+            >
+              <Icon name="phone" width="16" height="16" />
+              {site.contact.phone}
+            </a>
+          )}
           <LinkButton to="/quote" size="sm" withArrow>
             Request a Quote
           </LinkButton>
@@ -90,7 +92,7 @@ export function Header() {
         }`}
       >
         <div className="container-wide flex flex-col gap-1 border-t border-primary/10 bg-white/95 pb-6 pt-3">
-          {site.nav.map((item) => (
+          {(site.nav ?? []).map((item) => (
             <NavLink
               key={item.href}
               to={item.href}

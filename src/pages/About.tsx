@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { PageHero } from '@/sections/PageHero';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
@@ -10,10 +10,9 @@ const categories = ['All', 'Hotel', 'Villa', 'Mansion'] as const;
 
 export default function About() {
   const [filter, setFilter] = useState<(typeof categories)[number]>('All');
+  const portfolio = site.portfolio ?? [];
   const filtered =
-    filter === 'All'
-      ? site.portfolio
-      : site.portfolio.filter((p) => p.category === filter);
+    filter === 'All' ? portfolio : portfolio.filter((p) => p.category === filter);
 
   return (
     <>
@@ -50,15 +49,16 @@ export default function About() {
               A quarter-century turning sand into the world’s most precise architecture.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              Founded in {site.company.founded} as a small Sydney fabrication
-              workshop, Novatec has grown into a vertically-integrated
-              manufacturer with {site.company.factories.toLowerCase()} and a
-              global B2B footprint. Our purpose has stayed unchanged: deliver
-              glass that performs, lasts and elevates the buildings it’s
-              specified into.
+              Founded in {site.company.founded ?? 'our early years'} as a small
+              Sydney fabrication workshop, {site.company.shortName ?? site.company.name}{' '}
+              has grown into a vertically-integrated manufacturer with{' '}
+              {(site.company.factories ?? 'multiple manufacturing facilities').toLowerCase()}{' '}
+              and a global B2B footprint. Our purpose has stayed unchanged:
+              deliver glass that performs, lasts and elevates the buildings
+              it’s specified into.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
-              {site.stats.map((s) => (
+              {(site.stats ?? []).map((s) => (
                 <div key={s.label}>
                   <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
                     {s.value}
@@ -74,6 +74,7 @@ export default function About() {
       </section>
 
       {/* Timeline */}
+      {site.timeline && site.timeline.length > 0 && (
       <section className="bg-slate-50 py-20 sm:py-28">
         <div className="container-wide">
           <Reveal>
@@ -114,8 +115,10 @@ export default function About() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Portfolio */}
+      {portfolio.length > 0 && (
       <section className="py-20 sm:py-28">
         <div className="container-wide">
           <Reveal>
@@ -180,6 +183,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      )}
 
       <CtaBanner />
     </>

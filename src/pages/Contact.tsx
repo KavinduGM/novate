@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { Button } from '@/components/Button';
@@ -16,7 +16,10 @@ export default function Contact() {
     setTimeout(() => {
       setSubmitting(false);
       (e.target as HTMLFormElement).reset();
-      notify(site.forms.successMessage);
+      notify(
+        site.forms?.successMessage ??
+          `Thanks — your message has been received.`
+      );
     }, 600);
   };
 
@@ -73,7 +76,7 @@ export default function Contact() {
                 {submitting ? 'Sending…' : 'Send message'}
               </Button>
               <p className="mt-3 text-xs text-muted">
-                By submitting, you agree to be contacted by Novatec Glass regarding your enquiry.
+                By submitting, you agree to be contacted by {site.company.name} regarding your enquiry.
               </p>
             </form>
           </Reveal>
@@ -83,26 +86,36 @@ export default function Contact() {
             <div className="rounded-3xl bg-gradient-to-br from-primary-dark via-primary to-primary-light p-8 text-white shadow-glow sm:p-10">
               <h2 className="font-display text-2xl font-bold">Reach us directly</h2>
               <ul className="mt-8 space-y-6 text-sm">
-                <InfoRow icon="map" label="Headquarters" value={site.contact.address} />
-                <InfoRow
-                  icon="phone"
-                  label="Sales"
-                  value={site.contact.phone}
-                  href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
-                />
-                <InfoRow
-                  icon="mail"
-                  label="General enquiries"
-                  value={site.contact.email}
-                  href={`mailto:${site.contact.email}`}
-                />
-                <InfoRow
-                  icon="mail"
-                  label="Sales enquiries"
-                  value={site.contact.sales}
-                  href={`mailto:${site.contact.sales}`}
-                />
-                <InfoRow icon="clock" label="Trading hours" value={site.contact.hours} />
+                {site.contact.address && (
+                  <InfoRow icon="map" label="Headquarters" value={site.contact.address} />
+                )}
+                {site.contact.phone && (
+                  <InfoRow
+                    icon="phone"
+                    label="Sales"
+                    value={site.contact.phone}
+                    href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+                  />
+                )}
+                {site.contact.email && (
+                  <InfoRow
+                    icon="mail"
+                    label="General enquiries"
+                    value={site.contact.email}
+                    href={`mailto:${site.contact.email}`}
+                  />
+                )}
+                {site.contact.sales && (
+                  <InfoRow
+                    icon="mail"
+                    label="Sales enquiries"
+                    value={site.contact.sales}
+                    href={`mailto:${site.contact.sales}`}
+                  />
+                )}
+                {site.contact.hours && (
+                  <InfoRow icon="clock" label="Trading hours" value={site.contact.hours} />
+                )}
               </ul>
             </div>
 

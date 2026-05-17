@@ -1,9 +1,10 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
 import { Icon } from '@/components/Icon';
 
 export function Testimonials() {
+  if (!site.testimonials?.length) return null;
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-dark py-20 text-white sm:py-28">
       <div className="absolute inset-0 pattern-grid opacity-10" />

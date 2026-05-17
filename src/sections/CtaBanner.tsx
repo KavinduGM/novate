@@ -1,4 +1,4 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { LinkButton } from '@/components/Button';
 import { Reveal } from '@/components/Reveal';
 
@@ -23,11 +23,20 @@ export function CtaBanner() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 lg:col-span-4 lg:justify-end">
-                <LinkButton to={site.cta.primary.href} variant="secondary" size="lg" withArrow>
-                  {site.cta.primary.label}
+                <LinkButton
+                  to={site.cta?.primary.href ?? '/quote'}
+                  variant="secondary"
+                  size="lg"
+                  withArrow
+                >
+                  {site.cta?.primary.label ?? 'Request a Quote'}
                 </LinkButton>
-                <LinkButton to={site.cta.secondary.href} variant="outline" size="lg">
-                  {site.cta.secondary.label}
+                <LinkButton
+                  to={site.cta?.secondary.href ?? '/contact'}
+                  variant="outline"
+                  size="lg"
+                >
+                  {site.cta?.secondary.label ?? 'Contact us'}
                 </LinkButton>
               </div>
             </div>

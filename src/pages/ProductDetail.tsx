@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { LinkButton } from '@/components/Button';
@@ -9,12 +9,14 @@ import { Icon } from '@/components/Icon';
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const product = site.products.find((p) => p.slug === slug);
+  const products = site.products ?? [];
+  const product = products.find((p) => p.slug === slug);
   const [activeImage, setActiveImage] = useState(0);
 
   if (!product) return <Navigate to="/products" replace />;
 
-  const related = site.products.filter((p) => p.slug !== product.slug).slice(0, 3);
+  const gallery = product.gallery ?? (product.image ? [product.image] : []);
+  const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
 
   return (
     <>
@@ -43,15 +45,17 @@ export default function ProductDetail() {
           {/* Gallery */}
           <div className="lg:col-span-7">
             <Reveal>
+              {gallery.length > 0 && (
               <div className="overflow-hidden rounded-[2rem] shadow-glow ring-1 ring-primary/10">
                 <img
-                  src={product.gallery[activeImage]}
+                  src={gallery[activeImage] ?? gallery[0]}
                   alt={`${product.name} ${activeImage + 1}`}
                   className="aspect-[4/3] w-full object-cover transition-opacity duration-300"
                 />
               </div>
+              )}
               <div className="mt-4 grid grid-cols-3 gap-4">
-                {product.gallery.map((g, i) => (
+                {gallery.map((g, i) => (
                   <button
                     key={g + i}
                     onClick={() => setActiveImage(i)}
@@ -75,6 +79,8 @@ export default function ProductDetail() {
                 {product.summary}
               </p>
 
+              {product.features && product.features.length > 0 && (
+                <>
               <h3 className="mt-10 font-display text-lg font-bold text-ink">
                 Key features
               </h3>
@@ -91,7 +97,11 @@ export default function ProductDetail() {
                   </li>
                 ))}
               </ul>
+                </>
+              )}
 
+              {product.specs && product.specs.length > 0 && (
+                <>
               <h3 className="mt-10 font-display text-lg font-bold text-ink">
                 Technical specifications
               </h3>
@@ -105,7 +115,11 @@ export default function ProductDetail() {
                   </div>
                 ))}
               </dl>
+                </>
+              )}
 
+              {product.certifications && product.certifications.length > 0 && (
+                <>
               <h3 className="mt-10 font-display text-lg font-bold text-ink">
                 Certifications
               </h3>
@@ -120,18 +134,21 @@ export default function ProductDetail() {
                   </span>
                 ))}
               </div>
+                </>
+              )}
             </Reveal>
           </div>
         </div>
       </section>
 
       {/* Applications */}
+      {product.applications && product.applications.length > 0 && (
       <section className="bg-slate-50 py-20 sm:py-24">
         <div className="container-wide">
           <Reveal>
             <span className="h-eyebrow">Applications</span>
             <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold text-ink sm:text-4xl">
-              Where {product.shortName} glass excels.
+              Where {product.shortName ?? product.name} glass excels.
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -148,8 +165,10 @@ export default function ProductDetail() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Related */}
+      {related.length > 0 && (
       <section className="py-20 sm:py-24">
         <div className="container-wide">
           <div className="flex items-end justify-between">
@@ -189,6 +208,7 @@ export default function ProductDetail() {
           </div>
         </div>
       </section>
+      )}
 
       <CtaBanner />
     </>

@@ -1,4 +1,4 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { LinkButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 
@@ -13,62 +13,80 @@ export function Hero() {
 
       <div className="container-wide grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7 animate-fade-up">
-          <span className="h-eyebrow">
-            <Icon name="sparkles" width="14" height="14" />
-            {site.hero.eyebrow}
-          </span>
+          {site.hero.eyebrow && (
+            <span className="h-eyebrow">
+              <Icon name="sparkles" width="14" height="14" />
+              {site.hero.eyebrow}
+            </span>
+          )}
           <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl xl:text-7xl">
-            {site.hero.headline.split('glass').map((part, i, arr) =>
-              i < arr.length - 1 ? (
-                <span key={i}>
-                  {part}
-                  <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
-                    glass
+            {(site.hero.headline || `Welcome to ${site.company.name}`)
+              .split('glass')
+              .map((part, i, arr) =>
+                i < arr.length - 1 ? (
+                  <span key={i}>
+                    {part}
+                    <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+                      glass
+                    </span>
                   </span>
-                </span>
-              ) : (
-                <span key={i}>{part}</span>
-              )
-            )}
+                ) : (
+                  <span key={i}>{part}</span>
+                )
+              )}
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-muted sm:text-lg leading-relaxed">
-            {site.hero.sub}
-          </p>
+          {site.hero.subheadline && (
+            <p className="mt-6 max-w-2xl text-base text-muted sm:text-lg leading-relaxed">
+              {site.hero.subheadline}
+            </p>
+          )}
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <LinkButton to={site.hero.primaryCta.href} size="lg" withArrow>
-              {site.hero.primaryCta.label}
-            </LinkButton>
-            <LinkButton to={site.hero.secondaryCta.href} variant="ghost" size="lg">
-              {site.hero.secondaryCta.label}
-            </LinkButton>
+            {site.hero.ctaLabel && (
+              <LinkButton to={site.hero.ctaHref || '/quote'} size="lg" withArrow>
+                {site.hero.ctaLabel}
+              </LinkButton>
+            )}
+            {site.hero.secondaryCtaLabel && (
+              <LinkButton
+                to={site.hero.secondaryCtaHref || '/products'}
+                variant="ghost"
+                size="lg"
+              >
+                {site.hero.secondaryCtaLabel}
+              </LinkButton>
+            )}
           </div>
 
-          <div className="mt-10 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
-            {site.stats.map((s) => (
-              <div key={s.label}>
-                <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-muted">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          {site.stats && site.stats.length > 0 && (
+            <div className="mt-10 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
+              {site.stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
+                    {s.value}
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-wider text-muted">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="relative lg:col-span-5">
           <div className="relative animate-fade-up">
             <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary to-primary-light opacity-25 blur-2xl" />
-            <div className="overflow-hidden rounded-[2rem] shadow-glow ring-1 ring-primary/10">
-              <img
-                src={site.hero.image}
-                alt="Modern glass architecture facade"
-                className="aspect-[4/5] w-full object-cover"
-                loading="eager"
-              />
-            </div>
+            {site.hero.image && (
+              <div className="overflow-hidden rounded-[2rem] shadow-glow ring-1 ring-primary/10">
+                <img
+                  src={site.hero.image}
+                  alt={`${site.company.name} — feature image`}
+                  className="aspect-[4/5] w-full object-cover"
+                  loading="eager"
+                />
+              </div>
+            )}
             <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-white p-4 shadow-glow ring-1 ring-primary/10 sm:block animate-float">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary">

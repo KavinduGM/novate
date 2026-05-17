@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { CtaBanner } from '@/sections/CtaBanner';
@@ -13,10 +13,9 @@ export default function Resources() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const { notify } = useToast();
 
+  const resources = site.resources ?? [];
   const filtered =
-    filter === 'All'
-      ? site.resources
-      : site.resources.filter((r) => r.type === filter);
+    filter === 'All' ? resources : resources.filter((r) => r.type === filter);
 
   return (
     <>
@@ -30,6 +29,7 @@ export default function Resources() {
         ]}
       />
 
+      {resources.length > 0 && (
       <section className="py-20 sm:py-24">
         <div className="container-wide">
           <div className="flex flex-wrap justify-center gap-2">
@@ -84,8 +84,10 @@ export default function Resources() {
           </div>
         </div>
       </section>
+      )}
 
       {/* FAQ */}
+      {site.faqs && site.faqs.length > 0 && (
       <section className="bg-slate-50 py-20 sm:py-24">
         <div className="container-narrow">
           <Reveal>
@@ -99,7 +101,7 @@ export default function Resources() {
           </Reveal>
 
           <div className="mt-10 divide-y divide-primary/10 rounded-3xl bg-white shadow-soft ring-1 ring-primary/10">
-            {site.faqs.map((f, i) => (
+            {(site.faqs ?? []).map((f, i) => (
               <button
                 key={f.q}
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -133,6 +135,7 @@ export default function Resources() {
           </div>
         </div>
       </section>
+      )}
 
       <CtaBanner />
     </>

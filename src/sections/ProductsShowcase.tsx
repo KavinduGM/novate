@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
 import { LinkButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 
 export function ProductsShowcase() {
+  if (!site.products?.length) return null;
   return (
     <section className="relative bg-slate-50 py-20 sm:py-28">
       <div className="absolute inset-0 pattern-grid opacity-50" />

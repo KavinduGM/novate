@@ -1,7 +1,8 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { Reveal } from '@/components/Reveal';
 
 export function CertificationsStrip() {
+  if (!site.certifications?.length) return null;
   return (
     <section className="border-y border-primary/10 bg-white py-10">
       <div className="container-wide">

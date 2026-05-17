@@ -1,8 +1,27 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
+
+const DEFAULT_LOGO = '/logo.svg';
 
 export function Logo({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
   const ink = variant === 'dark' ? 'text-ink' : 'text-white';
   const accent = variant === 'dark' ? 'text-primary' : 'text-white/80';
+
+  const usingTenantImage =
+    typeof site.company.logo === 'string' &&
+    site.company.logo !== DEFAULT_LOGO &&
+    (/^https?:\/\//i.test(site.company.logo) ||
+      /\.(png|jpe?g|webp|gif|svg)(\?|$)/i.test(site.company.logo));
+
+  if (usingTenantImage) {
+    return (
+      <img
+        src={site.company.logo}
+        alt={site.company.name}
+        className="h-10 w-auto max-w-[200px] object-contain"
+      />
+    );
+  }
+
   return (
     <div className="flex items-center gap-2.5">
       <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-white shadow-soft">
@@ -15,9 +34,11 @@ export function Logo({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
         <span className={`font-display text-lg font-bold ${ink}`}>
           {site.company.name}
         </span>
-        <span className={`text-[10px] font-semibold uppercase tracking-[0.18em] ${accent}`}>
-          Australian Glass
-        </span>
+        {site.company.logoCaption && (
+          <span className={`text-[10px] font-semibold uppercase tracking-[0.18em] ${accent}`}>
+            {site.company.logoCaption}
+          </span>
+        )}
       </span>
     </div>
   );

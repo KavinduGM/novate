@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { CtaBanner } from '@/sections/CtaBanner';
@@ -20,7 +20,7 @@ export default function Products() {
 
       <section className="py-20 sm:py-28">
         <div className="container-wide grid gap-10">
-          {site.products.map((p, i) => (
+          {(site.products ?? []).map((p, i) => (
             <Reveal key={p.slug} delay={i * 60}>
               <article
                 className={`group grid gap-0 overflow-hidden rounded-[2rem] bg-white shadow-soft ring-1 ring-primary/10 transition hover:shadow-glow lg:grid-cols-12 lg:gap-0`}
@@ -50,7 +50,7 @@ export default function Products() {
                   </p>
 
                   <ul className="mt-6 grid gap-2 sm:grid-cols-2">
-                    {p.features.slice(0, 4).map((f) => (
+                    {(p.features ?? []).slice(0, 4).map((f) => (
                       <li
                         key={f}
                         className="flex items-start gap-2 text-sm text-ink/80"

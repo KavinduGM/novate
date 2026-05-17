@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 :root {
+  /* Brand vars — overridden at runtime from site.colors (see config/applyTheme.ts).
+     Stored as RGB triplets so Tailwind opacity utilities work. */
   --color-primary: 17 92 167;        /* #115ca7 */
   --color-primary-dark: 11 65 121;   /* deeper navy-blue */
   --color-primary-light: 79 159 229; /* sky tint */
   --color-accent: 14 165 233;        /* cyan accent */
+  --color-primary-text: 255 255 255; /* text on primary surfaces */
+  /* Neutral semantic tokens — not brand-driven */
   --color-ink: 15 23 42;             /* slate-900 */
   --color-muted: 100 116 139;        /* slate-500 */
 }

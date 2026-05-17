@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { Button } from '@/components/Button';
@@ -23,7 +23,10 @@ export default function Quote() {
       setSubmitting(false);
       (e.target as HTMLFormElement).reset();
       setSelectedProducts([]);
-      notify(site.forms.successMessage);
+      notify(
+        site.forms?.successMessage ??
+          'Thanks — your request has been received.'
+      );
     }, 700);
   };
 
@@ -56,7 +59,7 @@ export default function Quote() {
                 <SelectField
                   label="Industry"
                   name="industry"
-                  options={[...site.forms.industries]}
+                  options={[...(site.forms?.industries ?? [])]}
                   required
                   className="sm:col-span-2"
                 />
@@ -85,7 +88,7 @@ export default function Quote() {
                 Select one or more — we’ll match them to the right substrate and processing.
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {site.forms.productOptions.map((p) => {
+                {(site.forms?.productOptions ?? []).map((p) => {
                   const active = selectedProducts.includes(p);
                   return (
                     <label
@@ -161,19 +164,23 @@ export default function Quote() {
                 ))}
               </ol>
 
-              <div className="mt-8 rounded-2xl bg-white/10 p-5 ring-1 ring-white/20">
-                <p className="text-xs font-semibold uppercase tracking-wider text-white/80">
-                  Prefer to talk?
-                </p>
-                <a
-                  href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
-                  className="mt-1.5 flex items-center gap-2 font-display text-xl font-bold hover:underline"
-                >
-                  <Icon name="phone" width="20" height="20" />
-                  {site.contact.phone}
-                </a>
-                <p className="mt-1 text-xs text-white/70">{site.contact.hours}</p>
-              </div>
+              {site.contact.phone && (
+                <div className="mt-8 rounded-2xl bg-white/10 p-5 ring-1 ring-white/20">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-white/80">
+                    Prefer to talk?
+                  </p>
+                  <a
+                    href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+                    className="mt-1.5 flex items-center gap-2 font-display text-xl font-bold hover:underline"
+                  >
+                    <Icon name="phone" width="20" height="20" />
+                    {site.contact.phone}
+                  </a>
+                  {site.contact.hours && (
+                    <p className="mt-1 text-xs text-white/70">{site.contact.hours}</p>
+                  )}
+                </div>
+              )}
             </div>
           </Reveal>
         </div>

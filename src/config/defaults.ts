@@ -1,48 +1,29 @@
-// Single source of truth for all branding, copy, and content.
-// Re-skin the entire site by editing this file.
+import type { SiteConfig } from './types';
 
-export type Product = {
-  slug: string;
-  name: string;
-  shortName: string;
-  tagline: string;
-  summary: string;
-  image: string;
-  gallery: string[];
-  features: string[];
-  applications: string[];
-  specs: { label: string; value: string }[];
-  certifications: string[];
-};
-
-export type PortfolioProject = {
-  title: string;
-  location: string;
-  category: 'Hotel' | 'Villa' | 'Mansion' | 'Tower';
-  year: string;
-  image: string;
-  description: string;
-};
-
-export type Resource = {
-  title: string;
-  type: 'Brochure' | 'Technical Datasheet' | 'Case Study' | 'Article';
-  description: string;
-  image: string;
-};
-
-export const site = {
+export const defaults: SiteConfig = {
   company: {
     name: 'Novatec Glass',
     shortName: 'Novatec',
     tagline: 'Australian Glass. Engineered for the World.',
     description:
       'Novatec Glass is an Australian manufacturer of premium architectural glass — supplying float, tempered, laminated, low-E, heat-strengthened and curved glass to B2B clients worldwide.',
+    logo: '/logo.svg',
+    logoCaption: 'Australian Glass',
     founded: '1998',
     headquarters: 'Sydney, Australia',
     factories: '3 manufacturing facilities (NSW, VIC, WA)',
     countries: '42+ countries served',
     employees: '450+',
+  },
+
+  // Hex values — converted to RGB triplets at runtime so Tailwind opacity
+  // utilities (bg-primary/10, ring-primary/20, ...) continue to work.
+  colors: {
+    primary: '#115ca7',
+    primaryDark: '#0b4179',
+    primaryLight: '#4f9fe5',
+    accent: '#0ea5e9',
+    primaryText: '#ffffff',
   },
 
   contact: {
@@ -52,13 +33,38 @@ export const site = {
     email: 'enquiries@novatecglass.com.au',
     sales: 'sales@novatecglass.com.au',
     hours: 'Mon – Fri, 8:30 am – 5:30 pm AEST',
+    socials: {
+      linkedin: 'https://www.linkedin.com/',
+      facebook: 'https://www.facebook.com/',
+      instagram: 'https://www.instagram.com/',
+      youtube: 'https://www.youtube.com/',
+    },
   },
 
-  social: {
-    linkedin: 'https://www.linkedin.com/',
-    facebook: 'https://www.facebook.com/',
-    instagram: 'https://www.instagram.com/',
-    youtube: 'https://www.youtube.com/',
+  hero: {
+    eyebrow: 'Australian Glass Manufacturer · Est. 1998',
+    headline: 'Precision-engineered glass for the world’s most ambitious buildings.',
+    subheadline:
+      'From Sydney to Singapore, Dubai to Dublin — Novatec produces architectural and structural glass trusted by leading developers, hotel groups and fabricators across 42+ countries.',
+    ctaLabel: 'Request a Quote',
+    ctaHref: '/quote',
+    secondaryCtaLabel: 'Explore Products',
+    secondaryCtaHref: '/products',
+    image:
+      'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1600&q=80',
+  },
+
+  footer: {
+    copyright: '',
+    tagline: 'Made in Australia.',
+  },
+
+  meta: {
+    title: 'Novatec Glass — Australian Glass Manufacturing for Global B2B',
+    description:
+      'Novatec Glass is an Australian glass manufacturer producing float, tempered, laminated, low-E, heat-strengthened and curved glass for global architectural and B2B clients.',
+    keywords:
+      'glass manufacturer Australia, float glass, tempered glass, laminated glass, low-e glass, curved glass, B2B glass supplier',
   },
 
   nav: [
@@ -68,16 +74,6 @@ export const site = {
     { label: 'Resources', href: '/resources' },
     { label: 'Contact', href: '/contact' },
   ],
-
-  hero: {
-    eyebrow: 'Australian Glass Manufacturer · Est. 1998',
-    headline: 'Precision-engineered glass for the world’s most ambitious buildings.',
-    sub: 'From Sydney to Singapore, Dubai to Dublin — Novatec produces architectural and structural glass trusted by leading developers, hotel groups and fabricators across 42+ countries.',
-    primaryCta: { label: 'Request a Quote', href: '/quote' },
-    secondaryCta: { label: 'Explore Products', href: '/products' },
-    image:
-      'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1600&q=80',
-  },
 
   stats: [
     { value: '27+', label: 'Years of manufacturing' },
@@ -318,7 +314,7 @@ export const site = {
       ],
       certifications: ['AS/NZS 2208', 'EN 12150-1', 'ISO 9001'],
     },
-  ] satisfies Product[],
+  ],
 
   portfolio: [
     {
@@ -401,7 +397,7 @@ export const site = {
       description:
         'Private estate — 9,200 ft² of structural glass walls, glass balustrade staircase and curved entry.',
     },
-  ] satisfies PortfolioProject[],
+  ],
 
   certifications: [
     'ISO 9001 — Quality Management',
@@ -514,7 +510,7 @@ export const site = {
       image:
         'https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?auto=format&fit=crop&w=1200&q=80',
     },
-  ] satisfies Resource[],
+  ],
 
   faqs: [
     {
@@ -567,4 +563,4 @@ export const site = {
       'Not sure — advise me',
     ],
   },
-} as const;
+};

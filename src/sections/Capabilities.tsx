@@ -1,4 +1,4 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
 import { Icon } from '@/components/Icon';
@@ -38,7 +38,7 @@ export function Capabilities() {
             subtitle="Float lines, toughening furnaces, lamination autoclaves, magnetron coaters and our bending shop — all under one accountability chain."
           />
           <ul className="mt-8 space-y-4">
-            {site.whyChoose.map((w) => (
+            {(site.whyChoose ?? []).map((w) => (
               <li
                 key={w.title}
                 className="flex gap-4 rounded-2xl bg-white p-5 ring-1 ring-primary/5 transition hover:ring-primary/15"

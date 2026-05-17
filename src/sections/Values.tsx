@@ -1,9 +1,10 @@
-import { site } from '@/data/site';
+import { site } from '@/config/site';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
 import { Icon } from '@/components/Icon';
 
 export function Values() {
+  if (!site.values?.length) return null;
   return (
     <section className="py-20 sm:py-28">
       <div className="container-wide">
