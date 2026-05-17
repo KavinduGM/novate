@@ -17,9 +17,9 @@ export function CtaBanner() {
                   Have a project? Let’s engineer the right glass for it.
                 </h2>
                 <p className="mt-4 max-w-2xl text-white/85 sm:text-lg">
-                  Send us your specifications, drawings or sample reference. A
-                  Novatec specialist will respond within one business day with a
-                  full technical proposal.
+                  Send us your specifications, drawings or sample reference. A{' '}
+                  {site.company.shortName ?? site.company.name} specialist will
+                  respond within one business day with a full technical proposal.
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 lg:col-span-4 lg:justify-end">

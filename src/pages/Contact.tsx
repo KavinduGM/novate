@@ -27,7 +27,7 @@ export default function Contact() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Talk to a Novatec glass specialist."
+        title={`Talk to a ${site.company.shortName ?? site.company.name} glass specialist.`}
         subtitle="Project enquiries, technical questions, samples or distributor opportunities — we’ll route your message to the right person on our team."
         crumbs={[
           { label: 'Home', to: '/' },

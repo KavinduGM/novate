@@ -11,7 +11,7 @@ export default function Products() {
       <PageHero
         eyebrow="Product Range"
         title="Six product families. Specified for the world’s most demanding projects."
-        subtitle="From raw float substrate to fully-engineered curved IGUs, every Novatec product is manufactured in-house in Australia under one unified quality system."
+        subtitle={`From raw float substrate to fully-engineered curved IGUs, every ${site.company.shortName ?? site.company.name} product is manufactured in-house in Australia under one unified quality system.`}
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Products' },

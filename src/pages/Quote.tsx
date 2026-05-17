@@ -35,7 +35,7 @@ export default function Quote() {
       <PageHero
         eyebrow="Request a Quote"
         title="Tell us about your project. We’ll handle the engineering."
-        subtitle="Submit the form below with your spec, drawings or sample reference. A Novatec specialist will respond within one business day with a full technical proposal."
+        subtitle={`Submit the form below with your spec, drawings or sample reference. A ${site.company.shortName ?? site.company.name} specialist will respond within one business day with a full technical proposal.`}
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Request a Quote' },
@@ -147,7 +147,7 @@ export default function Quote() {
               <h3 className="font-display text-xl font-bold">What happens next</h3>
               <ol className="mt-6 space-y-5 text-sm">
                 {[
-                  ['Within 1 business day', 'A Novatec specialist contacts you to clarify the brief.'],
+                  ['Within 1 business day', `A ${site.company.shortName ?? site.company.name} specialist contacts you to clarify the brief.`],
                   ['Within 3 business days', 'You receive a full technical proposal with pricing and lead times.'],
                   ['Sample stage', 'We dispatch matched physical samples to your studio at no cost.'],
                   ['Production', 'On approval, your order enters our scheduled production runs.'],

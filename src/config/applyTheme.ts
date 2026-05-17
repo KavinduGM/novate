@@ -40,12 +40,17 @@ export function applyTheme() {
   if (primaryText) root.setProperty('--color-primary-text', primaryText);
 
   if (site.meta?.title) document.title = site.meta.title;
-  if (site.meta?.description) {
-    const tag = document.querySelector('meta[name="description"]');
-    if (tag) tag.setAttribute('content', site.meta.description);
-  }
-  if (site.meta?.keywords) {
-    const tag = document.querySelector('meta[name="keywords"]');
-    if (tag) tag.setAttribute('content', site.meta.keywords);
-  }
+  setMeta('meta[name="description"]', site.meta?.description);
+  setMeta('meta[name="keywords"]', site.meta?.keywords);
+
+  // Social share / OS chrome — tenants get correct previews on LinkedIn etc.
+  setMeta('meta[name="theme-color"]', site.colors.primary);
+  setMeta('meta[property="og:title"]', site.meta?.title);
+  setMeta('meta[property="og:description"]', site.meta?.description);
+}
+
+function setMeta(selector: string, value: string | undefined) {
+  if (!value) return;
+  const tag = document.querySelector(selector);
+  if (tag) tag.setAttribute('content', value);
 }

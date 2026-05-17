@@ -10,7 +10,7 @@ export function Values() {
       <div className="container-wide">
         <Reveal>
           <SectionHeader
-            eyebrow="Why Novatec"
+            eyebrow={`Why ${site.company.shortName ?? site.company.name}`}
             title="Built on four uncompromising principles."
             subtitle="From the float bath in Sydney to a yacht-shed in Monaco, every panel we ship is engineered to outperform — and to do it consistently."
           />

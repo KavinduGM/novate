@@ -17,9 +17,9 @@ export default function About() {
   return (
     <>
       <PageHero
-        eyebrow="About Novatec"
+        eyebrow={`About ${site.company.shortName ?? site.company.name}`}
         title="Engineering the world’s most demanding glass — from Australia."
-        subtitle="For more than two decades, Novatec has helped architects, developers and contractors realise some of the most ambitious facades, hotels and private residences on the planet."
+        subtitle={`For more than two decades, ${site.company.shortName ?? site.company.name} has helped architects, developers and contractors realise some of the most ambitious facades, hotels and private residences on the planet.`}
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'About' },
@@ -35,7 +35,7 @@ export default function About() {
               <div className="overflow-hidden rounded-[2rem] shadow-glow">
                 <img
                   src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1400&q=80"
-                  alt="Novatec factory"
+                  alt={`${site.company.shortName ?? site.company.name} factory`}
                   loading="lazy"
                   className="aspect-[4/5] w-full object-cover"
                 />
@@ -125,7 +125,7 @@ export default function About() {
             <SectionHeader
               eyebrow="Project Portfolio"
               title="A selection of completed projects."
-              subtitle="Hotels, mansions and private villas where Novatec glass shapes the experience — from facade to balustrade to bathroom."
+              subtitle={`Hotels, mansions and private villas where ${site.company.shortName ?? site.company.name} glass shapes the experience — from facade to balustrade to bathroom.`}
             />
           </Reveal>
 

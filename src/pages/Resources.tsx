@@ -22,7 +22,7 @@ export default function Resources() {
       <PageHero
         eyebrow="Resources"
         title="Specs, datasheets, case studies & insights."
-        subtitle="Everything an architect or specifier needs to design with Novatec glass — built for download, easy to reference, kept up to date."
+        subtitle={`Everything an architect or specifier needs to design with ${site.company.shortName ?? site.company.name} glass — built for download, easy to reference, kept up to date.`}
         crumbs={[
           { label: 'Home', to: '/' },
           { label: 'Resources' },

@@ -16,7 +16,7 @@ export function Testimonials() {
           <SectionHeader
             eyebrow="Trusted globally"
             title="What our B2B clients say."
-            subtitle="From facade contractors to luxury developers, the world’s most discerning builders specify Novatec."
+            subtitle={`From facade contractors to luxury developers, the world’s most discerning builders specify ${site.company.shortName ?? site.company.name}.`}
           />
         </Reveal>
 
