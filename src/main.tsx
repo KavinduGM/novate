@@ -9,7 +9,13 @@ applyTheme();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter
+      basename={
+        (typeof window !== 'undefined' &&
+          (window as { __BASE_URL__?: string }).__BASE_URL__) ||
+        import.meta.env.BASE_URL
+      }
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>
