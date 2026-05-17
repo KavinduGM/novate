@@ -9,3 +9,8 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# TS incremental build output
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
