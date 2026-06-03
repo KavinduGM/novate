@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
+import { Seo } from '@/components/Seo';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { Button } from '@/components/Button';
@@ -32,6 +33,11 @@ export default function Quote() {
 
   return (
     <>
+      <Seo
+        title="Request a Quote"
+        description={`Send your specifications, drawings or sample reference. A ${site.company.shortName ?? site.company.name} specialist responds within one business day with a full technical proposal.`}
+        path="/quote"
+      />
       <PageHero
         eyebrow="Request a Quote"
         title="Tell us about your project. We’ll handle the engineering."

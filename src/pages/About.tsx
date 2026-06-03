@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
+import { Seo } from '@/components/Seo';
 import { PageHero } from '@/sections/PageHero';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
@@ -16,6 +17,11 @@ export default function About() {
 
   return (
     <>
+      <Seo
+        title="About"
+        description={`Founded in ${site.company.founded ?? '1998'} in Sydney, ${site.company.name} manufactures architectural glass for global B2B clients across ${site.company.countries ?? '42+ countries'}.`}
+        path="/about"
+      />
       <PageHero
         eyebrow={`About ${site.company.shortName ?? site.company.name}`}
         title="Engineering the world’s most demanding glass — from Australia."

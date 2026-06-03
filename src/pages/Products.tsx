@@ -1,13 +1,30 @@
 import { Link } from 'react-router-dom';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
+import { Seo } from '@/components/Seo';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { CtaBanner } from '@/sections/CtaBanner';
 import { Icon } from '@/components/Icon';
 
 export default function Products() {
+  const productsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: (site.products ?? []).map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.name,
+      url: `https://novatecglass.com.au/products/${p.slug}`,
+    })),
+  };
   return (
     <>
+      <Seo
+        title="Products"
+        description={`Six families of architectural glass — float, toughened, laminated, low-E, heat-strengthened and curved — manufactured in-house by ${site.company.name}.`}
+        path="/products"
+        jsonLd={productsJsonLd}
+      />
       <PageHero
         eyebrow="Product Range"
         title="Six product families. Specified for the world’s most demanding projects."

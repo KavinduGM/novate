@@ -1,4 +1,4 @@
-import { site } from '@/config/site';
+import { site } from '@/data/site';
 import { LinkButton } from '@/components/Button';
 import { Reveal } from '@/components/Reveal';
 

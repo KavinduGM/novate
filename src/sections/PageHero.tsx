@@ -14,7 +14,7 @@ type Props = {
 
 export function PageHero({ eyebrow, title, subtitle, crumbs, children }: Props) {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-light pt-36 pb-20 text-white sm:pt-40 sm:pb-24">
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-light pt-28 pb-16 text-white sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
       <div className="absolute inset-0 pattern-grid opacity-10" />
       <div className="absolute -top-32 -right-20 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
       <div className="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
@@ -45,11 +45,11 @@ export function PageHero({ eyebrow, title, subtitle, crumbs, children }: Props) 
             {eyebrow}
           </span>
         )}
-        <h1 className="mt-5 max-w-4xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+        <h1 className="mt-5 max-w-4xl font-display text-[2rem] font-extrabold leading-[1.1] xs:text-4xl sm:text-5xl lg:text-6xl">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-5 max-w-3xl text-base text-white/85 sm:text-lg leading-relaxed">
+          <p className="mt-5 max-w-3xl text-[15px] text-white/90 sm:text-lg leading-relaxed">
             {subtitle}
           </p>
         )}

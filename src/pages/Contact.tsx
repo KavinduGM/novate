@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
+import { Seo } from '@/components/Seo';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { Button } from '@/components/Button';
@@ -25,6 +26,11 @@ export default function Contact() {
 
   return (
     <>
+      <Seo
+        title="Contact"
+        description={`Contact ${site.company.name} — Sydney HQ, three Australian manufacturing facilities, exporting to 42+ countries. Sales, technical and distributor enquiries welcome.`}
+        path="/contact"
+      />
       <PageHero
         eyebrow="Contact"
         title={`Talk to a ${site.company.shortName ?? site.company.name} glass specialist.`}

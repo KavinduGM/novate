@@ -2,27 +2,107 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#115ca7" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <title>Novatec Glass — Australian Glass Manufacturing for Global B2B</title>
     <meta
       name="description"
       content="Novatec Glass is an Australian glass manufacturer producing float, tempered, laminated, low-E, heat-strengthened and curved glass for global architectural and B2B clients."
     />
-    <meta name="keywords" content="glass manufacturer Australia, float glass, tempered glass, laminated glass, low-e glass, curved glass, B2B glass supplier" />
+    <meta
+      name="keywords"
+      content="glass manufacturer Australia, float glass, tempered glass, laminated glass, low-e glass, curved glass, B2B glass supplier"
+    />
+    <meta name="author" content="Novatec Glass" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://novatecglass.com.au/" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Novatec Glass" />
     <meta property="og:title" content="Novatec Glass — Australian Glass Manufacturing" />
-    <meta property="og:description" content="Precision-engineered architectural glass for hotels, mansions, towers and global B2B clients." />
+    <meta
+      property="og:description"
+      content="Precision-engineered architectural glass for hotels, mansions, towers and global B2B clients. Manufactured in Australia, exported to 42+ countries."
+    />
+    <meta property="og:locale" content="en_AU" />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Architectural glass facade by Novatec Glass" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Novatec Glass — Australian Glass Manufacturing" />
+    <meta
+      name="twitter:description"
+      content="Precision-engineered architectural glass for hotels, mansions, towers and global B2B clients."
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80"
+    />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Novatec Glass",
+        "url": "https://novatecglass.com.au/",
+        "logo": "https://novatecglass.com.au/logo.svg",
+        "description": "Australian manufacturer of premium architectural glass — float, tempered, laminated, low-E, heat-strengthened and curved glass — supplied to B2B clients worldwide.",
+        "foundingDate": "1998",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Level 8, 247 Sussex Street",
+          "addressLocality": "Sydney",
+          "addressRegion": "NSW",
+          "postalCode": "2000",
+          "addressCountry": "AU"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+61-2-8014-7700",
+            "contactType": "sales",
+            "email": "sales@novatecglass.com.au",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English"]
+          }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/",
+          "https://www.facebook.com/",
+          "https://www.instagram.com/",
+          "https://www.youtube.com/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding:2rem;font-family:system-ui,sans-serif;color:#0f172a">
+        Novatec Glass requires JavaScript to be enabled in your browser.
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

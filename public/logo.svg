@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48" role="img" aria-label="Novatec Glass">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#115ca7"/>
+      <stop offset="100%" stop-color="#4f9fe5"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="4" width="40" height="40" rx="10" fill="url(#g)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M14 12h11a5 5 0 0 1 0 10H18v10h-4z"/>
+  </g>
+  <circle cx="33" cy="33" r="3" fill="#ffffff" opacity="0.92"/>
+  <text x="54" y="28" font-family="'Plus Jakarta Sans', Inter, system-ui, sans-serif" font-weight="800" font-size="18" fill="#0f172a" letter-spacing="-0.5">Novatec</text>
+  <text x="54" y="42" font-family="'Plus Jakarta Sans', Inter, system-ui, sans-serif" font-weight="700" font-size="9" fill="#115ca7" letter-spacing="3">AUSTRALIAN GLASS</text>
+</svg>

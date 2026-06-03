@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
 import { LinkButton } from '@/components/Button';

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
+import { Seo } from '@/components/Seo';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { CtaBanner } from '@/sections/CtaBanner';
@@ -17,8 +18,27 @@ export default function Resources() {
   const filtered =
     filter === 'All' ? resources : resources.filter((r) => r.type === filter);
 
+  const faqJsonLd =
+    (site.faqs ?? []).length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: (site.faqs ?? []).map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        }
+      : undefined;
+
   return (
     <>
+      <Seo
+        title="Resources"
+        description={`Brochures, technical datasheets, case studies and articles for architects and specifiers — published by ${site.company.name}.`}
+        path="/resources"
+        jsonLd={faqJsonLd}
+      />
       <PageHero
         eyebrow="Resources"
         title="Specs, datasheets, case studies & insights."
@@ -51,7 +71,7 @@ export default function Resources() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((r, i) => (
               <Reveal key={r.title} delay={i * 60}>
-                <article className="group h-full overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-primary/5 transition hover:-translate-y-1 hover:shadow-glow">
+                <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-primary/5 transition hover:-translate-y-1 hover:shadow-glow">
                   <div className="relative aspect-[5/3] overflow-hidden">
                     <img
                       src={r.image}
@@ -63,7 +83,7 @@ export default function Resources() {
                       {r.type}
                     </span>
                   </div>
-                  <div className="flex h-[calc(100%-12rem)] flex-col p-6">
+                  <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-lg font-bold text-ink">{r.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted">
                       {r.description}
@@ -72,7 +92,7 @@ export default function Resources() {
                       onClick={() =>
                         notify(`Your download of "${r.title}" will start shortly. (Demo)`)
                       }
-                      className="mt-5 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary hover:underline"
+                      className="mt-auto pt-5 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary hover:underline"
                     >
                       <Icon name="download" width="16" height="16" />
                       Download PDF

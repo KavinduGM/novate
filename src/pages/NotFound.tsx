@@ -1,8 +1,10 @@
 import { LinkButton } from '@/components/Button';
+import { Seo } from '@/components/Seo';
 
 export default function NotFound() {
   return (
     <section className="flex min-h-[80vh] items-center justify-center pt-32 pb-20">
+      <Seo title="Page not found" description="The page you’re looking for doesn’t exist or has moved." />
       <div className="container-narrow text-center">
         <p className="font-display text-7xl font-extrabold text-primary sm:text-8xl">
           404

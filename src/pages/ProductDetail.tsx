@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
+import { Seo } from '@/components/Seo';
 import { PageHero } from '@/sections/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { LinkButton } from '@/components/Button';
@@ -18,8 +19,25 @@ export default function ProductDetail() {
   const gallery = product.gallery ?? (product.image ? [product.image] : []);
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.summary ?? product.tagline ?? '',
+    image: product.image ? [product.image] : undefined,
+    brand: { '@type': 'Brand', name: site.company.name },
+    category: 'Architectural Glass',
+  };
+
   return (
     <>
+      <Seo
+        title={product.name}
+        description={product.summary ?? product.tagline}
+        path={`/products/${product.slug}`}
+        image={product.image}
+        jsonLd={jsonLd}
+      />
       <PageHero
         eyebrow={product.shortName}
         title={product.name}

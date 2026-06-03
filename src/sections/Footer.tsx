@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
 import { Logo } from '@/components/Logo';
 import { Icon } from '@/components/Icon';
 

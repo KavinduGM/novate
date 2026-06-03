@@ -1,4 +1,4 @@
-import { site } from '@/config/site';
+import { site } from '@/data/site';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Reveal } from '@/components/Reveal';
 import { Icon } from '@/components/Icon';

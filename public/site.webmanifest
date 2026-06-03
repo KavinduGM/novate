@@ -1,0 +1,18 @@
+{
+  "name": "Novatec Glass",
+  "short_name": "Novatec",
+  "description": "Australian Glass. Engineered for the World.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#115ca7",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { site } from '@/config/site';
+import { site } from '@/data/site';
 import { Reveal } from '@/components/Reveal';
 
 export function CertificationsStrip() {

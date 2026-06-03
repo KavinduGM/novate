@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { site } from '@/config/site';
+import { site } from '@/data/site';
 import { Logo } from '@/components/Logo';
 import { LinkButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
@@ -21,20 +21,46 @@ export function Header() {
     setOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-white/90 backdrop-blur-lg shadow-soft'
-          : 'bg-white/60 backdrop-blur-sm'
+          : 'bg-white/70 backdrop-blur-sm'
       }`}
     >
-      <div className="container-wide flex h-20 items-center justify-between">
-        <Link to="/" aria-label={`${site.company.name} home`}>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to content
+      </a>
+      <div className="container-wide flex h-[68px] items-center justify-between sm:h-20">
+        <Link
+          to="/"
+          aria-label={`${site.company.name} home`}
+          className="rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+        >
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           {(site.nav ?? []).map((item) => (
             <NavLink
               key={item.href}
@@ -42,9 +68,7 @@ export function Header() {
               end={item.href === '/'}
               className={({ isActive }) =>
                 `relative rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                  isActive
-                    ? 'text-primary'
-                    : 'text-ink/70 hover:text-primary'
+                  isActive ? 'text-primary' : 'text-ink/70 hover:text-primary'
                 }`
               }
             >
@@ -77,18 +101,20 @@ export function Header() {
 
         <button
           type="button"
-          aria-label="Toggle menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
-          className="grid h-11 w-11 place-items-center rounded-xl text-ink lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-xl text-ink hover:bg-primary/5 lg:hidden"
         >
           <Icon name={open ? 'close' : 'menu'} width="22" height="22" />
         </button>
       </div>
 
       <div
+        id="mobile-menu"
         className={`overflow-hidden transition-[max-height,opacity] duration-300 lg:hidden ${
-          open ? 'max-h-[480px] opacity-100' : 'max-h-0 opacity-0'
+          open ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="container-wide flex flex-col gap-1 border-t border-primary/10 bg-white/95 pb-6 pt-3">
@@ -106,7 +132,16 @@ export function Header() {
               {item.label}
             </NavLink>
           ))}
-          <div className="mt-3">
+          {site.contact.phone && (
+            <a
+              href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+              className="mt-2 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-ink/70"
+            >
+              <Icon name="phone" width="16" height="16" />
+              {site.contact.phone}
+            </a>
+          )}
+          <div className="mt-3 px-1">
             <LinkButton to="/quote" className="w-full" withArrow>
               Request a Quote
             </LinkButton>
